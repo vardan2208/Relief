@@ -1,0 +1,8 @@
+{
+  "name": "RelieF.com",
+  "description": "A platform to connect users with mental health professionals, schedule appointments, and manage health information, with an integrated support chatbot.",
+  "requestFramePermissions": [
+    "geolocation",
+    "camera"
+  ]
+}

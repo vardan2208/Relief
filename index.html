@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RelieF.com</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'neon-cyan': '#00FFFF',
+              'neon-pink': '#FF00FF',
+              'neon-green': '#39FF14',
+            },
+            boxShadow: {
+              'neon-cyan': '0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 20px #00FFFF, 0 0 40px #00FFFF',
+              'neon-pink': '0 0 5px #FF00FF, 0 0 10px #FF00FF, 0 0 20px #FF00FF, 0 0 40px #FF00FF',
+            },
+            keyframes: {
+              'pulse-neon': {
+                '0%, 100%': { opacity: 1, textShadow: '0 0 5px #00FFFF, 0 0 10px #00FFFF' },
+                '50%': { opacity: 0.8, textShadow: '0 0 10px #00FFFF, 0 0 20px #00FFFF' },
+              }
+            },
+            animation: {
+              'pulse-neon': 'pulse-neon 2s ease-in-out infinite',
+            }
+          },
+        },
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+  }
+}
+</script>
+</head>
+  <body class="bg-black">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+
+    <!-- Firebase Configuration and Initialization -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyDUIb2F_dL-oKUrJs2jzv_O0IOv3RQ5Awg",
+        authDomain: "depression-hacker-9d705.firebaseapp.com",
+        projectId: "depression-hacker-9d705",
+        appId: "1:1000885906763:web:68d1eee2c3b6a3bb824cce"
+      };
+      if (!window.firebase?.apps?.length) {
+        window.firebase.initializeApp(firebaseConfig);
+      }
+    </script>
+    
+    <!-- Botpress scripts -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2025/01/14/18/20250114185019-V565E8QS.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        // Clear sessionStorage to ensure the chat history doesn't persist
+        sessionStorage.clear();
+        // Initialize Botpress Webchat with resetSession option
+        if (window.BotpressWebChat) {
+          window.BotpressWebChat.init({
+            botId: 'YOUR_BOTPRESS_BOT_ID', // Replace with your Botpress bot ID
+            resetSession: true,
+            onMounted: function () {
+              console.log('Botpress Webchat initialized!');
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
