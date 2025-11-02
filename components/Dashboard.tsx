@@ -85,7 +85,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, appointment, onBookAnother 
                     </div>
                     <div className="border-t border-gray-700 my-4"></div>
                     <div>
-                        <p className="text-lg"><span className="font-semibold text-gray-300">Date:</span> {new Date(appointment.date).toDateString()}</p>
+                        <p className="text-lg"><span className="font-semibold text-gray-300">Date:</span> {new Date(`${appointment.date}T00:00:00`).toDateString()}</p>
                         <p className="text-lg"><span className="font-semibold text-gray-300">Time:</span> {appointment.time}</p>
                         <p className="text-lg"><span className="font-semibold text-gray-300">Location:</span> {appointment.doctor.location}</p>
                     </div>

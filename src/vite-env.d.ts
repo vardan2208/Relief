@@ -1,13 +1,10 @@
-// Fix: Comment out to resolve "Cannot find type definition file for 'vite/client'" in a constrained environment.
-// The interfaces below provide the necessary types for import.meta.env for this project.
-// /// <reference types="vite/client" />
+// Provides type definitions for Vite environment variables.
 
-// Fix: Add process type for process.env.API_KEY used in geminiService.ts, as per guidelines.
-declare const process: {
-  env: {
+declare namespace NodeJS {
+  interface ProcessEnv {
     API_KEY: string;
-  };
-};
+  }
+}
 
 interface ImportMetaEnv {
   readonly VITE_FIREBASE_API_KEY: string;

@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+// FIX: Import `User` type from `firebase/auth`. The modern `User` type is compatible 
+// with the legacy `firebase.User` for the properties used in this application, 
+// and this resolves the "Cannot find namespace 'firebase'" error.
+import { User } from 'firebase/auth';
 import Auth from './components/Auth';
 import Dashboard from './components/Dashboard';
 import Spinner from './components/Spinner';
@@ -32,7 +36,8 @@ const Footer: React.FC = () => (
 
 
 const App: React.FC = () => {
-    const [user, setUser] = useState<any | null>(null);
+    // FIX: Replaced `firebase.User` with the imported `User` type to fix the type error on line 35.
+    const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
     // New state for top-level navigation
@@ -47,7 +52,8 @@ const App: React.FC = () => {
     useEffect(() => {
         const initFirebase = () => {
             if (window.firebase) {
-                const unsubscribe = window.firebase.auth().onAuthStateChanged((user: any) => {
+                // FIX: Replaced `firebase.User` with the imported `User` type to fix the type error on line 50.
+                const unsubscribe = window.firebase.auth().onAuthStateChanged((user: User | null) => {
                     setUser(user);
                     if (user) {
                         setAppPath('CHOICE'); // On login, always go to choice page
@@ -96,6 +102,7 @@ const App: React.FC = () => {
     };
 
     const handleBookingConfirm = (appointmentDetails: Omit<Appointment, 'id' | 'userEmail'>) => {
+        if (!user || !user.email) return;
         const appointment: Appointment = {
             ...appointmentDetails,
             id: new Date().toISOString(),
@@ -108,15 +115,19 @@ const App: React.FC = () => {
     };
     
     const handleSimulatedLogin = () => {
-        setUser({
+        // This is a mock user object for the face auth demo
+        const mockUser = {
             email: 'facial_login@relief.com',
             displayName: 'Facial Recognition User'
-        });
+        // FIX: Replaced `firebase.User` with the imported `User` type for the type assertion to fix the error on line 116.
+        } as User;
+        setUser(mockUser);
         setAppPath('CHOICE');
         setLoading(false);
     }
 
     const renderDoctorFlow = () => {
+        if (!user) return null;
         switch (doctorFlowStep) {
             case 'INTAKE':
                 return <IntakeForm user={user} onSubmit={handleIntakeSubmit} />;

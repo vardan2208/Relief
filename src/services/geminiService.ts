@@ -1,7 +1,6 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Doctor, IntakeData } from '../types';
 
-// FIX: Per coding guidelines, the API key must be obtained from process.env.API_KEY.
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const findDoctors = async (intakeData: IntakeData): Promise<Doctor[]> => {

@@ -7,7 +7,6 @@ interface FriendSupportProps {
 
 const FriendSupport: React.FC<FriendSupportProps> = ({ user }) => {
     const [name, setName] = useState(user.displayName || '');
-    const [email, setEmail] = useState(user.email || '');
     const [problemType, setProblemType] = useState('relationship');
     const [problemDescription, setProblemDescription] = useState('');
     const [wantsCall, setWantsCall] = useState(false);
@@ -81,7 +80,7 @@ const FriendSupport: React.FC<FriendSupportProps> = ({ user }) => {
                     </div>
                     <div>
                         <label className="text-sm font-bold text-gray-400 block mb-1">Email</label>
-                        <input type="email" name="email" value={email} readOnly className="w-full bg-gray-700 border-gray-600 rounded p-2 text-gray-400 cursor-not-allowed" />
+                        <input type="email" name="email" value={user.email} readOnly className="w-full bg-gray-700 border-gray-600 rounded p-2 text-gray-400 cursor-not-allowed" />
                     </div>
                  </div>
                  

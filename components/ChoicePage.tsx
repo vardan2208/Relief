@@ -16,8 +16,8 @@ const ChoiceCard: React.FC<{
 }> = ({ icon, title, description, onClick, color }) => {
     const baseClasses = "p-8 bg-gray-900 rounded-lg border-2 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer flex flex-col items-center text-center";
     const colorClasses = {
-        cyan: 'border-neon-cyan/50 hover:border-neon-cyan hover:shadow-neon-cyan/30',
-        green: 'border-neon-green/50 hover:border-neon-green hover:shadow-neon-green/30',
+        cyan: 'border-neon-cyan/50 hover:border-neon-cyan hover:shadow-lg hover:shadow-neon-cyan/30',
+        green: 'border-neon-green/50 hover:border-neon-green hover:shadow-lg hover:shadow-neon-green/30',
     };
     const buttonClasses = {
         cyan: 'bg-neon-cyan text-black',
@@ -29,7 +29,7 @@ const ChoiceCard: React.FC<{
             <div className="mb-4">{icon}</div>
             <h3 className={`text-2xl font-bold mb-2 ${color === 'cyan' ? 'text-neon-cyan' : 'text-neon-green'}`}>{title}</h3>
             <p className="text-gray-400 mb-6 flex-grow">{description}</p>
-            <button className={`w-full py-3 font-bold rounded-md hover:bg-opacity-90 transition-transform transform hover:scale-105`}>
+            <button className={`w-full py-3 font-bold rounded-md hover:bg-opacity-90 transition-transform transform hover:scale-105 ${buttonClasses[color]}`}>
                 Select
             </button>
         </div>

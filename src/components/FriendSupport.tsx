@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import UserIcon from './icons/UserIcon';
 
 interface FriendSupportProps {
     user: any;

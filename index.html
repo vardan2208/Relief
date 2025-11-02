@@ -18,6 +18,7 @@
             boxShadow: {
               'neon-cyan': '0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 20px #00FFFF, 0 0 40px #00FFFF',
               'neon-pink': '0 0 5px #FF00FF, 0 0 10px #FF00FF, 0 0 20px #FF00FF, 0 0 40px #FF00FF',
+              'neon-green': '0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14',
             },
             keyframes: {
               'pulse-neon': {
@@ -39,35 +40,37 @@
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0",
+    "firebase/": "https://aistudiocdn.com/firebase@^12.5.0/",
     "vite": "https://aistudiocdn.com/vite@^7.1.12",
-    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.0",
-    "firebase/": "https://aistudiocdn.com/firebase@^12.5.0/"
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.0"
   }
 }
 </script>
 </head>
   <body class="bg-black">
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Firebase SDK Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script>
+      // IMPORTANT: Replace with your actual Firebase project configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDUIb2F_dL-oKUrJs2jzv_O0IOv3RQ5Awg",
+        authDomain: "depression-hacker-9d705.firebaseapp.com",
+        projectId: "depression-hacker-9d705",
+        appId: "1:1000885906763:web:68d1eee2c3b6a3bb824cce"
+      };
+      // Initialize Firebase
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+      }
+    </script>
+    
+    <script type="module" src="/index.tsx"></script>
     
     <!-- Botpress scripts -->
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2025/01/14/18/20250114185019-V565E8QS.js"></script>
-    <script>
-      window.addEventListener('load', function () {
-        // Clear sessionStorage to ensure the chat history doesn't persist
-        sessionStorage.clear();
-        // Initialize Botpress Webchat with resetSession option
-        if (window.BotpressWebChat) {
-          window.BotpressWebChat.init({
-            botId: 'YOUR_BOTPRESS_BOT_ID', // Replace with your Botpress bot ID
-            resetSession: true,
-            onMounted: function () {
-              console.log('Botpress Webchat initialized!');
-            }
-          });
-        }
-      });
-    </script>
   </body>
 </html>
